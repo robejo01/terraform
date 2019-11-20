@@ -49,7 +49,7 @@ resource "null_resource" "farm-mod" {
   depends_on = ["null_resource.appzone-farm"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"listener":"https","disable_sslv2":"true","disable_sslv3":"true","disable_tlsv1":"true","disable_tlsv1_1":"true","ciphers":"customsecurity","cipherc":"${var.az_ciphers}","httpverb":"extendedHTTP","rewritelocation":"disabled"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-appzones02
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"listener":"https","disable_sslv2":"true","disable_sslv3":"true","disable_tlsv1":"true","disable_tlsv1_1":"true","ciphers":"customsecurity","cipherc":"${var.az_ciphers}","httpverb":"extendedHTTP","rewritelocation":"disabled","error414":"Request URI is too long.(ZENLB)","error500":"An internal server error occurred. Please try again later.(ZENLB)","error501":"This method may not be used.(ZENLB)","error503":"The service is not available. Please try again later.(ZENLB)"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-appzones02
 EOT
   }
 }
@@ -159,7 +159,7 @@ resource "null_resource" "appzone_bkend1" {
   depends_on = ["null_resource.killtime-4"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.az_bkend1_ip}","port":${var.az_bkend_port},"weight":2,"timeout":5}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-appzones02/services/appzones02-svc/backends
+    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.az_bkend1_ip}","port":${var.az_bkend_port},"weight":2,"timeout":15}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-appzones02/services/appzones02-svc/backends
 EOT
   }
 }
@@ -189,7 +189,7 @@ resource "null_resource" "appzone_bkend2" {
   depends_on = ["null_resource.appzone_bkend1"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.az_bkend2_ip}","port":${var.az_bkend_port},"weight":2,"timeout":5}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-appzones02/services/appzones02-svc/backends
+    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.az_bkend2_ip}","port":${var.az_bkend_port},"weight":2,"timeout":15}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-appzones02/services/appzones02-svc/backends
 EOT
   }
 }
