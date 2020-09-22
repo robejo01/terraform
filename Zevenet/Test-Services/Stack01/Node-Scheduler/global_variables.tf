@@ -12,16 +12,16 @@
 #############################################
 terraform {
   backend "consul" {
-    address      = "dockerhost02.lab.tsafe.systems:8500"
+    address      = "address.of.consul.server"
     scheme       = "http"
-    path         = "tf-legacy/state/krkld/infrastructure/zevenet/test-services/stack01/scheduler"
-    access_token = "fbd54794-4a9d-ab23-e66d-b44b95375555"
+    path         = "path/to/project
+    access_token = "YOUR-TOKEN-HERE"
   }
 }
 
 variable "api_key" {
   type    = "string"
-  default = "xFaaqQcAlbQOIRYpdsBgKgp6RSMKPAJU1fYjoOFXQbS4XdOgTSeGtnQ4djXiPL223"
+  default = "API-KEY-HERE"
 }
 
 variable "bs_vint_ip" {
@@ -36,7 +36,7 @@ variable "bs_vint_name" {
 
 variable "bs_vhostname" {
   type    = "string"
-  default = "bschedules01.test.tsafe.systems"
+  default = "bschedules01.test.company.com"
 }
 
 variable "bs_bkend1_ip" {

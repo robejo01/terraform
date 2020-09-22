@@ -11,10 +11,10 @@ provider "aws" {
 
 terraform {
   backend "consul" {
-    address      = "dockerhost02.lab.tsafe.systems:8500"
+    address      = "address.of.consul.server"
     scheme       = "http"
-    path         = "tf-legacy/state/aws01/Infrastructure"
-    access_token = "fbd54794-4a9d-ab23-e66d-b44b95375555"
+    path         = "path/to/project"
+    access_token = "YOUR-TOKEN-HERE"
   }
 }
 
@@ -42,12 +42,12 @@ variable "stg-allow-all-sg" {
 
 variable "dmz_tier_subnets" {
   type    = "list"
-  default = ["subnet-f3090f97", "subnet-71d08907"]
+  default = ["subnet-abcd1234", "subnet-efgh5678"]
 }
 
 variable "stg_vpcid" {
   type    = "string"
-  default = "vpc-9d7960f9"
+  default = "vpc-abcd1234"
 }
 
 variable "base_env_tags" {
@@ -59,5 +59,5 @@ variable "base_env_tags" {
 }
 
 variable "as_grp_name" {
-  default = "STG-BWAF-CF-AS-BWAFAutoScalingGroup-NJWI9W7HZFS3"
+  default = "STG-BWAF-CF-AS-BWAFAutoScalingGroup-ABCDEF123456"
 }

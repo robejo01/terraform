@@ -23,7 +23,7 @@ resource "aws_internet_gateway" "AWS10-GW" {
 
 ## Route 53 Forward Zones
 resource "aws_route53_zone" "dmz10" {
-  name    = "dmz10.tsafe.systems"
+  name    = "dmz10.company.com"
   comment = "US-East-1 STG10 Edge"
   tags    = "${var.base_env_tags}"
 
@@ -33,7 +33,7 @@ resource "aws_route53_zone" "dmz10" {
 }
 
 resource "aws_route53_zone" "app10" {
-  name    = "app10.tsafe.systems"
+  name    = "app10.company.com"
   comment = "US-East-1 STG10 App"
   tags    = "${var.base_env_tags}"
 
@@ -43,7 +43,7 @@ resource "aws_route53_zone" "app10" {
 }
 
 resource "aws_route53_zone" "data10" {
-  name    = "data10.tsafe.systems"
+  name    = "data10.company.com"
   comment = "US-East-1 STG10 Data"
   tags    = "${var.base_env_tags}"
 
@@ -296,7 +296,7 @@ resource "aws_default_route_table" "STG10-Edge-Router" {
   }
   route {
     cidr_block = "10.220.0.0/16" # Access to/from MGMT11
-    vpc_peering_connection_id = "pcx-01123ffb546cc611b"
+    vpc_peering_connection_id = "pcx-012345678901234567"
   }
   route {
     cidr_block = "10.20.0.0/16" # Access to/from MGMT11
@@ -311,7 +311,7 @@ resource "aws_route_table" "STG10-Core-Router-AZA" {
 
   route {
     cidr_block = "10.220.0.0/16" # Access to/from MGMT11
-    vpc_peering_connection_id = "pcx-01123ffb546cc611b"
+    vpc_peering_connection_id = "pcx-012345678901234567"
   }
   route {
     cidr_block = "10.20.0.0/16" # Access to/from MGMT11
@@ -319,7 +319,7 @@ resource "aws_route_table" "STG10-Core-Router-AZA" {
   }
   route {
     cidr_block = "10.150.0.0/16" # Access to/from STG07
-    vpc_peering_connection_id = "pcx-0de7c5da7036a1446"
+    vpc_peering_connection_id = "pcx-012345678901234567"
   }
 
   tags = "${merge(var.base_env_tags, map("Name","STG10 Core Router AZA"))}"
@@ -330,7 +330,7 @@ resource "aws_route_table" "STG10-Core-Router-AZB" {
 
   route {
     cidr_block = "10.220.0.0/16" # Access to/from MGMT11
-    vpc_peering_connection_id = "pcx-01123ffb546cc611b"
+    vpc_peering_connection_id = "pcx-012345678901234567"
   }
   route {
     cidr_block = "10.20.0.0/16" # Access to/from MGMT11
@@ -338,7 +338,7 @@ resource "aws_route_table" "STG10-Core-Router-AZB" {
   }
   route {
     cidr_block = "10.150.0.0/16" # Access to/from STG07
-    vpc_peering_connection_id = "pcx-0de7c5da7036a1446"
+    vpc_peering_connection_id = "pcx-012345678901234567"
   }
   tags = "${merge(var.base_env_tags, map("Name","STG10 Core Router AZB"))}"
 }
@@ -348,7 +348,7 @@ resource "aws_route_table" "STG10-Core-Router-AZC" {
 
   route {
     cidr_block = "10.220.0.0/16" # Access to/from MGMT11
-    vpc_peering_connection_id = "pcx-01123ffb546cc611b"
+    vpc_peering_connection_id = "pcx-012345678901234567"
   }
   route {
     cidr_block = "10.20.0.0/16" # Access to/from MGMT11
@@ -356,7 +356,7 @@ resource "aws_route_table" "STG10-Core-Router-AZC" {
   }
   route {
     cidr_block = "10.150.0.0/16" # Access to/from STG07
-    vpc_peering_connection_id = "pcx-0de7c5da7036a1446"
+    vpc_peering_connection_id = "pcx-012345678901234567"
   }
   tags = "${merge(var.base_env_tags, map("Name","STG10 Core Router AZC"))}"
 }

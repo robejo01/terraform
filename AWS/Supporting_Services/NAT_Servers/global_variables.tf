@@ -11,41 +11,41 @@ provider "aws" {
 
 terraform {
   backend "consul" {
-    address      = "dockerhost02.lab.tsafe.systems:8500"
+    address      = "address.to.consul.server"
     scheme       = "http"
-    path         = "tf-legacy/state/aws11/supporting_services/nat_instances"
-    access_token = "fbd54794-4a9d-ab23-e66d-b44b95375555"
+    path         = "path/to/project"
+    access_token = "YOUR-TOKEN-HERE"
   }
 }
 
 variable "nat_ami" {
    type = "string"
 
-   default = "ami-027ba5d3b4fab4bfa"
+   default = "ami-0123456789fab4bfa"
  }
 
 variable "mgmt11_vpc" {
   type = "string"
 
-  default = "vpc-09baa099acb0fc1df"
+  default = "vpc-0123456789b0fc1df"
 }
 
 variable "nata_subnet" {
   type = "string"
 
-  default = "subnet-079bce7f16db68917"
+  default = "subnet-0123456789db68917"
 }
 
 variable "natb_subnet" {
   type = "string"
 
-  default = "subnet-0502be5a628032d3f"
+  default = "subnet-01234567898032d3f"
 }
 
 variable "nat_reverse_zones" {
   type = "list"
 
-  default = ["Z00540592B7ICSSI2KR2R", "Z00539091DGEKV8X59HU2"]
+  default = ["Z01234567897ICSSI2KR2R", "Z0123456789EKV8X59HU2"]
 }
 
 variable "nat01a_ips" {
@@ -82,9 +82,9 @@ variable "base_env_tags" {
 }
 
 variable "mgmt-allow-all" {
-  default = "sg-0566ac4ea4414e86e"
+  default = "sg-0123456789414e86e"
 }
 
 variable "mgmt-dmz-tier" {
-  default = "sg-03421041a87924a8b"
+  default = "sg-01234567897924a8b"
 }

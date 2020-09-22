@@ -1,6 +1,6 @@
 variable "az_tg_arn" {
   type    = "string"
-  default = "arn:aws:elasticloadbalancing:us-west-2:441514930411:targetgroup/StageS01-App/347f8517ea946694"
+  default = "arn:aws:elasticloadbalancing:us-west-2:123456730411:targetgroup/StageS01-App/1234567ea946694"
 }
 
 variable "az_tg_name" {
@@ -15,20 +15,20 @@ variable "stg_vpc" {
 
 variable "az_instances" {
   type    = "list"
-  default = ["i-080249da18eb17281, i-06b9e62c868045a51, i-08173cd9638ac0594"]
+  default = ["i-0123456789eb17281, i-01234567898045a51, i-01234567898ac0594"]
 }
 
 variable "sg_id" {
   type    = "string"
-  default = "sg-f609808f"
+  default = "sg-abcd1234"
 }
 
 variable "subnets" {
   type    = "list"
-  default = ["subnet-f3090f97, subnet-71d08907, subnet-b28112ea"]
+  default = ["subnet-abcd1234, subnet-abcd1234, subnet-abcd1234"]
 }
 
 variable "cert_arn" {
   type    = "string"
-  default = "arn:aws:acm:us-west-2:441514930411:certificate/6e8117c9-763a-4b7a-a047-41e75269406c"
+  default = "arn:aws:acm:us-west-2:012345678901:certificate/6e8117c9-763a-4b7a-a047-41e75269406c"
 }

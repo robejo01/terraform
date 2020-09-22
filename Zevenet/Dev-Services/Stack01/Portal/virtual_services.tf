@@ -19,7 +19,7 @@
 resource "null_resource" "udx-vinterface" {
   provisioner "local-exec" {
     command = <<EOT
-  curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.udx_vint_ip}","netmask":"${var.udx_vint_mask}","gateway":"${var.udx_vint_gw}","name":"${var.udx_vint_name}"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/interfaces/virtual
+  curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.udx_vint_ip}","netmask":"${var.udx_vint_mask}","gateway":"${var.udx_vint_gw}","name":"${var.udx_vint_name}"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/interfaces/virtual
 EOT
   }
 }
@@ -39,7 +39,7 @@ resource "null_resource" "udx-farm" {
   depends_on = ["null_resource.udx-vinterface"]
   provisioner "local-exec" {
     command = <<EOT
-  curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"farmname":"dev-portals01","profile":"http","vip":"${var.udx_vint_ip}","vport":"443"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms
+  curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"farmname":"dev-portals01","profile":"http","vip":"${var.udx_vint_ip}","vport":"443"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms
 EOT
   }
 }
@@ -49,7 +49,7 @@ resource "null_resource" "farm-mod" {
   depends_on = ["null_resource.udx-farm"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"listener":"https","disable_sslv2":"true","disable_sslv3":"true","disable_tlsv1":"true","disable_tlsv1_1":"true","ciphers":"customsecurity","cipherc":"${var.udx_ciphers}","httpverb":"extendedHTTP","rewritelocation":"disabled"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"listener":"https","disable_sslv2":"true","disable_sslv3":"true","disable_tlsv1":"true","disable_tlsv1_1":"true","ciphers":"customsecurity","cipherc":"${var.udx_ciphers}","httpverb":"extendedHTTP","rewritelocation":"disabled"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01
 EOT
   }
 }
@@ -59,7 +59,7 @@ resource "null_resource" "farmsvc_restart-2" {
   depends_on = ["null_resource.farm-mod"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
 EOT
   }
 }
@@ -69,7 +69,7 @@ resource "null_resource" "udx-farmcert" {
   depends_on = ["null_resource.farmsvc_restart-2"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"file":"${var.udx_certname}"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/certificates
+    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"file":"${var.udx_certname}"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/certificates
 EOT
   }
 }
@@ -79,7 +79,7 @@ resource "null_resource" "farmsvc_restart-3" {
   depends_on = ["null_resource.udx-farmcert"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
 EOT
   }
 }
@@ -99,7 +99,7 @@ resource "null_resource" "udx_service" {
   depends_on = ["null_resource.killtime-2"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"id":"portals01-svc"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/services
+    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"id":"portals01-svc"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/services
 EOT
   }
 }
@@ -109,7 +109,7 @@ resource "null_resource" "farmsvc_restart-4" {
   depends_on = ["null_resource.udx_service"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
 EOT
   }
 }
@@ -129,7 +129,7 @@ resource "null_resource" "udx_svcmod" {
   depends_on = ["null_resource.killtime-3"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"vhost":"${var.udx_vhostname}"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/services/portals01-svc
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"vhost":"${var.udx_vhostname}"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/services/portals01-svc
 EOT
   }
 }
@@ -139,7 +139,7 @@ resource "null_resource" "farmsvc_restart-5" {
   depends_on = ["null_resource.udx_svcmod"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
 EOT
   }
 }
@@ -159,7 +159,7 @@ resource "null_resource" "udx_bkend1" {
   depends_on = ["null_resource.killtime-4"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.udx_bkend1_ip}","port":${var.udx_bkend_port},"weight":2,"timeout":5}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/services/portals01-svc/backends
+    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.udx_bkend1_ip}","port":${var.udx_bkend_port},"weight":2,"timeout":5}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/services/portals01-svc/backends
 EOT
   }
 }
@@ -169,7 +169,7 @@ resource "null_resource" "farmsvc_restart-6" {
   depends_on = ["null_resource.udx_bkend2", "null_resource.udx_bkend1"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
 EOT
   }
 }
@@ -189,7 +189,7 @@ resource "null_resource" "udx_bkend2" {
   depends_on = ["null_resource.udx_bkend1"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.udx_bkend2_ip}","port":${var.udx_bkend_port},"weight":2,"timeout":5}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/services/portals01-svc/backends
+    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.udx_bkend2_ip}","port":${var.udx_bkend_port},"weight":2,"timeout":5}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/services/portals01-svc/backends
 EOT
   }
 }
@@ -199,7 +199,7 @@ resource "null_resource" "farmsvc_restart-7" {
   depends_on = ["null_resource.udx_bkend2"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
 EOT
   }
 }
@@ -219,7 +219,7 @@ resource "null_resource" "add-udx-check" {
   depends_on = ["null_resource.killtime-6"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"name":"check_udx","parent":"check_http"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/monitoring/fg
+    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"name":"check_udx","parent":"check_http"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/monitoring/fg
 EOT
   }
 }
@@ -229,7 +229,7 @@ resource "null_resource" "mod-udx-check" {
   depends_on = ["null_resource.add-udx-check"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"command":"check_http -I HOST -p PORT -w 10 -c 15 -t 15 -u /system/status -R '"'ready: true'"'"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/monitoring/fg/check_udx
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"command":"check_http -I HOST -p PORT -w 10 -c 15 -t 15 -u /system/status -R '"'ready: true'"'"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/monitoring/fg/check_udx
 EOT
   }
 }
@@ -239,7 +239,7 @@ resource "null_resource" "udx-check" {
   depends_on = ["null_resource.mod-udx-check"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"name":"check_udx"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/services/portals01-svc/fg
+    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"name":"check_udx"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/services/portals01-svc/fg
 EOT
   }
 }
@@ -249,7 +249,7 @@ resource "null_resource" "farmsvc_restart-8" {
   depends_on = ["null_resource.udx-check"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01/actions
 EOT
   }
 }
@@ -260,7 +260,7 @@ resource "null_resource" "udx-redir-farm" {
   depends_on = ["null_resource.farmsvc_restart-8"]
   provisioner "local-exec" {
     command = <<EOT
-  curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"farmname":"dev-portals01-redir","profile":"http","vip":"${var.udx_vint_ip}","vport":"80"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms
+  curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"farmname":"dev-portals01-redir","profile":"http","vip":"${var.udx_vint_ip}","vport":"80"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms
 EOT
   }
 }
@@ -270,7 +270,7 @@ resource "null_resource" "udx_redir_service" {
   depends_on = ["null_resource.udx-redir-farm"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"id":"portals01-redir-svc"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01-redir/services
+    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"id":"portals01-redir-svc"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01-redir/services
 EOT
   }
 }
@@ -280,7 +280,7 @@ resource "null_resource" "farmsvc_restart-9" {
   depends_on = ["null_resource.udx_redir_service"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01-redir/actions
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01-redir/actions
 EOT
   }
 }
@@ -290,7 +290,7 @@ resource "null_resource" "udx_redir_svcmod" {
   depends_on = ["null_resource.farmsvc_restart-9"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"vhost":"${var.udx_vhostname}","redirect":"${var.udx_redirurl}","redirecttype":"default"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01-redir/services/portals01-redir-svc
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"vhost":"${var.udx_vhostname}","redirect":"${var.udx_redirurl}","redirecttype":"default"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01-redir/services/portals01-redir-svc
 EOT
   }
 }
@@ -300,7 +300,7 @@ resource "null_resource" "farmsvc_restart-10" {
   depends_on = ["null_resource.udx_redir_svcmod"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/dev-portals01-redir/actions
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/dev-portals01-redir/actions
 EOT
   }
 }

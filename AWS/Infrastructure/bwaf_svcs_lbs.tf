@@ -22,7 +22,7 @@ resource "aws_lb_listener" "STG01-TDCVS02-Listener" {
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = "arn:aws:acm:us-west-2:441514930411:certificate/8a312ecc-ce56-45f3-bb45-ceb70f38c142"
+  certificate_arn   = "arn:aws:acm:us-west-2:0123456789012:certificate/8a312ecc-ce56-45f3-bb45-ceb70f38c142"
 
   default_action {
     type             = "forward"
@@ -98,7 +98,7 @@ resource "aws_autoscaling_attachment" "TDCVS02_TG_AS_Attachment" {
 
 # Make the forward entries
 resource "aws_route53_record" "STG01-TDCVS02-LB-DNSFW" {
-  zone_id = "ZTG8J3KE6YSWR"
+  zone_id = "ABCDEF123456"
   name    = "tdcvs02"
   type    = "A"
 
@@ -152,7 +152,7 @@ resource "aws_lb_listener" "STG01-UDXVS02-Listener-443" {
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = "arn:aws:acm:us-west-2:441514930411:certificate/8a312ecc-ce56-45f3-bb45-ceb70f38c142"
+  certificate_arn   = "arn:aws:acm:us-west-2:abcdef123456:certificate/8a312ecc-ce56-45f3-bb45-ceb70f38c142"
 
   default_action {
     type             = "forward"
@@ -212,7 +212,7 @@ resource "aws_autoscaling_attachment" "UDXVS02_TG_AS_Attachment" {
 
 # Make the forward entries
 resource "aws_route53_record" "STG01-UDXVS02-LB-DNSFW" {
-  zone_id = "ZTG8J3KE6YSWR"
+  zone_id = "ABCDEF123456"
   name    = "udxvs02"
   type    = "A"
 

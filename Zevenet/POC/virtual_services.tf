@@ -22,7 +22,7 @@ resource "null_resource" "farms" {
   depends_on = ["restapi_object.virt_interface"]
   provisioner "local-exec" {
     command = <<EOT
-  curl -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: xFaaqQcAlbQOIRYpdsBgKgp6RSMKPAJU1fYjoOFXQbS4XdOgTSeGtnQ4djXiPL223" -d '{"farmname":"thefarmTerraformCreated","profile":"http","vip":"192.168.15.15","vport":"80"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms
+  curl -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: API-KEY-HERE" -d '{"farmname":"thefarmTerraformCreated","profile":"http","vip":"192.168.15.15","vport":"80"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms
 EOT
   }
 }
@@ -32,7 +32,7 @@ resource "null_resource" "farmsvc_restart-1" {
   depends_on = ["null_resource.farms"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: xFaaqQcAlbQOIRYpdsBgKgp6RSMKPAJU1fYjoOFXQbS4XdOgTSeGtnQ4djXiPL223" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/actions
+    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: API-KEY-HERE" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/actions
 EOT
   }
 }
@@ -52,7 +52,7 @@ resource "null_resource" "farm-mod" {
   depends_on = ["null_resource.killtime"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: xFaaqQcAlbQOIRYpdsBgKgp6RSMKPAJU1fYjoOFXQbS4XdOgTSeGtnQ4djXiPL223" -d '{"httpverb":"standardHTTP","rewritelocation":"enabled"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated
+    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: API-KEY-HERE" -d '{"httpverb":"standardHTTP","rewritelocation":"enabled"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated
 EOT
   }
 }
@@ -62,7 +62,7 @@ resource "null_resource" "farmsvc_restart-2" {
   depends_on = ["null_resource.farm-mod"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: xFaaqQcAlbQOIRYpdsBgKgp6RSMKPAJU1fYjoOFXQbS4XdOgTSeGtnQ4djXiPL223" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/actions
+    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: API-KEY-HERE" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/actions
 EOT
   }
 }
@@ -89,7 +89,7 @@ resource "null_resource" "farmsvc_restart-3" {
   depends_on = ["restapi_object.farm_service"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: xFaaqQcAlbQOIRYpdsBgKgp6RSMKPAJU1fYjoOFXQbS4XdOgTSeGtnQ4djXiPL223" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/actions
+    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: API-KEY-HERE" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/actions
 EOT
   }
 }
@@ -109,7 +109,7 @@ resource "null_resource" "farm_svcmod" {
   depends_on = ["null_resource.farmsvc_restart-3", "null_resource.killtime-2"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: xFaaqQcAlbQOIRYpdsBgKgp6RSMKPAJU1fYjoOFXQbS4XdOgTSeGtnQ4djXiPL223" -d '{"vhost":"blarf.lab.tsafe.systems","persistence":"IP"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/services/blarf
+    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: API-KEY-HERE" -d '{"vhost":"blarf.lab.company.com","persistence":"IP"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/services/blarf
 EOT
   }
 }
@@ -119,7 +119,7 @@ resource "null_resource" "farmsvc_restart-4" {
   depends_on = ["null_resource.farm_svcmod"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: xFaaqQcAlbQOIRYpdsBgKgp6RSMKPAJU1fYjoOFXQbS4XdOgTSeGtnQ4djXiPL223" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/actions
+    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: API-KEY-HERE" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/actions
 EOT
   }
 }
@@ -139,7 +139,7 @@ resource "null_resource" "farmsvc_bkend" {
   depends_on = ["null_resource.killtime-3"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: xFaaqQcAlbQOIRYpdsBgKgp6RSMKPAJU1fYjoOFXQbS4XdOgTSeGtnQ4djXiPL223" -d '{"ip":"192.168.15.17","port":"80"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/services/blarf/backends
+    curl -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: API-KEY-HERE" -d '{"ip":"192.168.15.17","port":"80"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/services/blarf/backends
 EOT
   }
 }
@@ -149,7 +149,7 @@ resource "null_resource" "farmsvc_restart-5" {
   depends_on = ["null_resource.farmsvc_bkend"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: xFaaqQcAlbQOIRYpdsBgKgp6RSMKPAJU1fYjoOFXQbS4XdOgTSeGtnQ4djXiPL223" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/actions
+    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: API-KEY-HERE" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/actions
 EOT
   }
 }
@@ -169,7 +169,7 @@ resource "null_resource" "farmguardians" {
   depends_on = ["null_resource.killtime-4"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: xFaaqQcAlbQOIRYpdsBgKgp6RSMKPAJU1fYjoOFXQbS4XdOgTSeGtnQ4djXiPL223" -d '{"name":"check_tcp-cut_conns"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/services/blarf/fg
+    curl -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: API-KEY-HERE" -d '{"name":"check_tcp-cut_conns"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/services/blarf/fg
 EOT
   }
 }
@@ -179,7 +179,7 @@ resource "null_resource" "farmsvc_restart-6" {
   depends_on = ["null_resource.farmguardians"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: xFaaqQcAlbQOIRYpdsBgKgp6RSMKPAJU1fYjoOFXQbS4XdOgTSeGtnQ4djXiPL223" -d '{"action":"restart"}' https://zenlb01.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/actions
+    curl -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: API-KEY-HERE" -d '{"action":"restart"}' https://zenlb01.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/thefarmTerraformCreated/actions
 EOT
   }
 }

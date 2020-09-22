@@ -25,7 +25,7 @@ resource "aws_instance" "mgmt-apt-cache01" {
 # Make the forward entries
   resource "aws_route53_record" "ac01-DNSFW" {
     count           = "${var.num_ac_instances}"
-    zone_id         = "Z08446893JYLU96W0JOO8"
+    zone_id         = "Z0123456789LU96W0JOO8"
     name            = "aptcache01-${lookup(var.pretty_az_ids, element(var.azs, count.index), "Unknown ID")}"
     type            = "A"
     ttl             = "3600"

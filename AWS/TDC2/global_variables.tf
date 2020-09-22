@@ -11,10 +11,10 @@ provider "aws" {
 
 terraform {
   backend "consul" {
-    address      = "dockerhost02.lab.tsafe.systems:8500"
+    address      = "address.of.consul.server"
     scheme       = "http"
-    path         = "tf-legacy/state/aws01/tdc2/security-groups"
-    access_token = "fbd54794-4a9d-ab23-e66d-b44b95375555"
+    path         = "path/to/project"
+    access_token = "YOUR-TOKEN-HERE"
   }
 }
 

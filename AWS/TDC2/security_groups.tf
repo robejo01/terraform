@@ -13,7 +13,7 @@
 resource "aws_security_group" "stg-app-tier" {
   name        = "App_Tier"
   description = "Application layer security group"
-  vpc_id      = "vpc-9d7960f9"
+  vpc_id      = "vpc-abcd1234"
 
   ingress {
     # All Traffic
@@ -26,7 +26,7 @@ resource "aws_security_group" "stg-app-tier" {
     # Opening to 0.0.0.0/0 can lead to security vulnerabilities.
     cidr_blocks = ["10.20.1.4/32", "10.20.1.6/32", "20.20.0.0/16"]
     # Here we are allowing the STG App Tier SG that's under the Prod02 account access to all things AWS01's App Tier
-    security_groups = ["291051187624/sg-02978f407369a51fa"]
+    security_groups = ["012345687624/sg-0012345677369a51fa"]
   }
 
   ingress {
@@ -72,7 +72,7 @@ resource "aws_security_group" "stg-app-tier" {
 resource "aws_security_group" "stg-data-tier" {
   name        = "Data_Tier"
   description = "Data layer security group"
-  vpc_id      = "vpc-9d7960f9"
+  vpc_id      = "vpc-defg1234"
 
   ingress {
     from_port = 0
@@ -108,7 +108,7 @@ resource "aws_security_group" "stg-data-tier" {
     # While these could be pretty variables, I like to have the IPs in front of me when creating these rules.
     cidr_blocks = ["172.20.128.0/24", "172.20.129.0/24", "172.22.128.0/24", "172.22.129.0/24"]
     # Here we are allowing the STG RPTSVC_S2S SG that's under the Prod02 account access to MYSQL under the Prod01 acct.
-    security_groups = ["291051187624/sg-095a984cc1bcd39fb"]
+    security_groups = ["012345678904/sg-0123456cc1bcd39fb"]
     description     = "Allow MYSQL communications (TF managed desc.)"
   }
 
@@ -145,7 +145,7 @@ resource "aws_security_group" "stg-mail-stack01" {
     # Opening to 0.0.0.0/0 can lead to security vulnerabilities.
     # While these could be pretty variables, I like to have the IPs in front of me when creating these rules.
     # Here we are allowing the STG RPTSVC_S2S SG that's under the Prod02 account access to SMTP under the Prod01 acct.
-    security_groups = ["291051187624/sg-095a984cc1bcd39fb", "sg-59901620", "sg-af9c1ad6", "sg-ea9e1893"]
+    security_groups = ["012345677624/sg-01234567890cd39fb", "sg-hijk1234", "sg-lmno1234", "sg-pqrs1234"]
     description     = "Allow SMTP communications (TF managed desc.)"
   }
 

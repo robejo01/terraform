@@ -11,10 +11,10 @@ provider "aws" {
 
 terraform {
   backend "consul" {
-    address      = "dockerhost02.lab.tsafe.systems:8500"
+    address      = "address.of.consul.server"
     scheme       = "http"
-    path         = "tf-legacy/state/aws11/supporting_services"
-    access_token = "fbd54794-4a9d-ab23-e66d-b44b95375555"
+    path         = "path/to/project"
+    access_token = "YOUR-TOKEN-HERE"
   }
 }
 
@@ -22,7 +22,7 @@ terraform {
 variable "ac_ami" {
   type = "string"
 
-  default = "ami-09a8c24f47b33df22"
+  default = "ami-1234567890b33df22"
 }
 
 # We can't use the AZ data source because we aren't starting from AZ A or using all AZs
@@ -45,7 +45,7 @@ variable "pretty_az_ids" {
 variable "ac_subnets" {
   type = "list"
 
-  default = ["subnet-0bebdac9399d1858d", "subnet-008f796d5db0285f2"]
+  default = ["subnet-012345678909d1858d", "subnet-1234567890b0285f2"]
 }
 
 variable "ac_ips" {
@@ -57,13 +57,13 @@ variable "ac_ips" {
 variable "mgmt_vpc" {
   type = "string"
 
-  default = "vpc-09baa099acb0fc1df"
+  default = "vpc-abcdefg12345679acb0fc1df"
 }
 
 variable "ac_reverse_zones" {
   type = "list"
 
-  default = ["Z0844340MW0ATRJ3E30O", "Z18PA793UWASLR"]
+  default = ["Z01234567890TRJ3E30O", "Z12345678WASLR"]
 }
 
 variable "ac_tags" {
@@ -83,5 +83,5 @@ variable "base_env_tags" {
 }
 
 variable "mgmt-app-tier" {
-  default = "sg-0239a0b3f21055e65"
+  default = "sg-01234567891055e65"
 }

@@ -12,16 +12,16 @@
 #############################################
 terraform {
   backend "consul" {
-    address      = "dockerhost02.lab.tsafe.systems:8500"
+    address      = "address.of.consul.server"
     scheme       = "http"
-    path         = "tf-legacy/state/krkld/infrastructure/zevenet/dev-services/stack01/victoria-station"
-    access_token = "fbd54794-4a9d-ab23-e66d-b44b95375555"
+    path         = "path/to/project"
+    access_token = "YOUR-TOKEN-HERE"
   }
 }
 
 variable "api_key" {
   type    = "string"
-  default = "xFaaqQcAlbQOIRYpdsBgKgp6RSMKPAJU1fYjoOFXQbS4XdOgTSeGtnQ4djXiPL223"
+  default = "API-KEY-HERE"
 }
 
 variable "vs_vint_ip" {
@@ -46,7 +46,7 @@ variable "vs_vint_name" {
 
 variable "vs_vhostname" {
   type    = "string"
-  default = "vssvcs01.dev.tsafe.systems"
+  default = "vssvcs01.dev.company.com"
 }
 
 variable "vs_bkend1_ip" {

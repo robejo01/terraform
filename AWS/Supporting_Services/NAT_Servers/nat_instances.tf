@@ -23,7 +23,7 @@
 
   # Make the forward entries
     resource "aws_route53_record" "nat01-a-DNSFW" {
-      zone_id         = "Z005409525PD6ALH1W7TS"
+      zone_id         = "Z0123456789D6ALH1W7TS"
       name            = "mgmt-nat01-a"
       type            = "A"
       ttl             = "3600"
@@ -33,7 +33,7 @@
 
     # Make the reverse entries
     resource "aws_route53_record" "nat01-a-DNSRV" {
-      zone_id = "Z00540592B7ICSSI2KR2R"
+      zone_id = "Z0123456789ICSSI2KR2R"
       name    = "${element(split(".", var.nat01a_ips), 3)}"
       type    = "PTR"
       ttl     = "3600"
@@ -59,7 +59,7 @@
 
   # Make the forward entries
   resource "aws_route53_record" "nat02-a-DNSFW" {
-    zone_id         = "Z005409525PD6ALH1W7TS"
+    zone_id         = "Z0123456789D6ALH1W7TS"
     name            = "mgmt-nat02-a"
     type            = "A"
     ttl             = "3600"
@@ -69,7 +69,7 @@
 
   # Make the reverse entries
   resource "aws_route53_record" "nat02-a-DNSRV" {
-    zone_id = "Z00540592B7ICSSI2KR2R"
+    zone_id = "Z0123456789ICSSI2KR2R"
     name    = "${element(split(".", var.nat02a_ips), 3)}"
     type    = "PTR"
     ttl     = "3600"
@@ -95,7 +95,7 @@
 
   # Make the forward entries
     resource "aws_route53_record" "nat01-b-DNSFW" {
-      zone_id         = "Z005409525PD6ALH1W7TS"
+      zone_id         = "Z0123456789D6ALH1W7TS"
       name            = "mgmt-nat01-b"
       type            = "A"
       ttl             = "3600"
@@ -105,7 +105,7 @@
 
     # Make the reverse entries
     resource "aws_route53_record" "nat01-b-DNSRV" {
-      zone_id = "Z00539091DGEKV8X59HU2"
+      zone_id = "Z0123456789EKV8X59HU2"
       name    = "${element(split(".", var.nat01b_ips), 3)}"
       type    = "PTR"
       ttl     = "3600"
@@ -131,7 +131,7 @@
 
   # Make the forward entries
     resource "aws_route53_record" "nat02-b-DNSFW" {
-      zone_id         = "Z005409525PD6ALH1W7TS"
+      zone_id         = "Z0123456789D6ALH1W7TS"
       name            = "mgmt-nat02-b"
       type            = "A"
       ttl             = "3600"
@@ -141,7 +141,7 @@
 
     # Make the reverse entries
     resource "aws_route53_record" "nat02-b-DNSRV" {
-      zone_id = "Z00539091DGEKV8X59HU2"
+      zone_id = "Z0123456789EKV8X59HU2"
       name    = "${element(split(".", var.nat02b_ips), 3)}"
       type    = "PTR"
       ttl     = "3600"

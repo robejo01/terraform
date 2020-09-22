@@ -20,7 +20,7 @@ resource "null_resource" "appzone-refund-farm" {
   #  depends_on = ["null_resource.farmsvc_restart-8"]
   provisioner "local-exec" {
     command = <<EOT
-  curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"farmname":"test-appzones02-refund","profile":"http","vip":"${var.az_vint_ip}","vport":"10080"}' https://zenlb03.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms
+  curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"farmname":"test-appzones02-refund","profile":"http","vip":"${var.az_vint_ip}","vport":"10080"}' https://zenlb03.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms
 EOT
   }
 }
@@ -30,7 +30,7 @@ resource "null_resource" "appzone_refund_service" {
   depends_on = ["null_resource.appzone-refund-farm"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"id":"appzones02-refund-svc"}' https://zenlb03.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/services
+    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"id":"appzones02-refund-svc"}' https://zenlb03.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/services
 EOT
   }
 }
@@ -40,7 +40,7 @@ resource "null_resource" "farmsvc_restart-1" {
   depends_on = ["null_resource.appzone_refund_service"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb03.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-redir/actions
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb03.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-redir/actions
 EOT
   }
 }
@@ -50,7 +50,7 @@ resource "null_resource" "appzone__refund_svcmod" {
   depends_on = ["null_resource.farmsvc_restart-1"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"vhost":"${var.az_vhostname}"}' https://zenlb03.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/services/appzones02-refund-svc
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"vhost":"${var.az_vhostname}"}' https://zenlb03.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/services/appzones02-refund-svc
 EOT
   }
 }
@@ -60,7 +60,7 @@ resource "null_resource" "farmsvc_restart-2" {
   depends_on = ["null_resource.appzone__refund_svcmod"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb03.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/actions
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb03.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/actions
 EOT
   }
 }
@@ -70,7 +70,7 @@ resource "null_resource" "appzone_bkend1" {
   depends_on = ["null_resource.farmsvc_restart-2"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.az_bkend1_ip}","port":${var.az_bkend_port},"weight":2,"timeout":15}' https://zenlb03.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/services/appzones02-refund-svc/backends
+    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.az_bkend1_ip}","port":${var.az_bkend_port},"weight":2,"timeout":15}' https://zenlb03.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/services/appzones02-refund-svc/backends
 EOT
   }
 }
@@ -80,7 +80,7 @@ resource "null_resource" "farmsvc_restart-3" {
   depends_on = ["null_resource.appzone_bkend1"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb03.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/actions
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb03.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/actions
 EOT
   }
 }
@@ -100,7 +100,7 @@ resource "null_resource" "appzone_bkend2" {
   depends_on = ["null_resource.killtime-3"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.az_bkend2_ip}","port":${var.az_bkend_port},"weight":2,"timeout":15}' https://zenlb03.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/services/appzones02-refund-svc/backends
+    curl -s -i -k -X POST -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"ip":"${var.az_bkend2_ip}","port":${var.az_bkend_port},"weight":2,"timeout":15}' https://zenlb03.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/services/appzones02-refund-svc/backends
 EOT
   }
 }
@@ -110,7 +110,7 @@ resource "null_resource" "farmsvc_restart-4" {
   depends_on = ["null_resource.appzone_bkend2"]
   provisioner "local-exec" {
     command = <<EOT
-    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb03.mgmt.tsafe.systems:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/actions
+    curl -s -i -k -X PUT -H 'Content-Type: application/json' -H "ZAPI_KEY: "${var.api_key}"" -d '{"action":"restart"}' https://zenlb03.mgmt.company.com:444/zapi/v4.0/zapi.cgi/farms/test-appzones02-refund/actions
 EOT
   }
 }
